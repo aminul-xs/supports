@@ -14,6 +14,8 @@ module.exports = {
 		entry: {
 			...defaultConfig.entry(),
 			'supports/filter': path.resolve( process.cwd(), 'src/supports', 'filter.js'),
+			'components/index': path.resolve( process.cwd(), 'src/components', 'index.js'),
+			'controls/index': path.resolve( process.cwd(), 'src/controls', 'index.js'),
 		},
 		plugins: [
 			// Include WP's plugin config.

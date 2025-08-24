@@ -10,6 +10,9 @@
 			"type": "string",
 			"source": "html",
 			"selector": "p"
+		},
+		"border": {
+			"type": "object"
 		}
 	},
 	"example": {
@@ -23,6 +26,13 @@
 	"style": "file:./style-index.css",
 	"keywords": [ "supports" ],
 	"supports": {
+		"background": {
+			"backgroundImage": true,
+			"backgroundSize": true,
+			"__experimentalDefaultControls": {
+				"backgroundImage": true
+			}
+		},
 		"color": {
 			"text": true,
 			"link": true,

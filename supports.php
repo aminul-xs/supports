@@ -75,3 +75,73 @@ function create_block_supports_block_init() {
 add_action( 'init', 'create_block_supports_block_init' );
 
 require_once PLUGIN_DIR . '/includes/enqueue.php';
+
+add_action( 'admin_menu', function() {
+    add_menu_page(
+        'Supports',
+        'Supports',
+        'manage_options',
+        'supports',
+        'supports_render_clean_page',
+        '', // No icon
+        3
+    );
+});
+
+function supports_render_clean_page() {
+  
+}
+
+
+// add_action( 'current_screen', function( $screen ) {
+//     if ( $screen->id === 'toplevel_page_supports' ) {
+//         remove_all_actions( 'admin_enqueue_scripts' );
+//         remove_all_actions( 'admin_print_styles' );
+//         remove_all_actions( 'admin_head' );
+//         remove_all_actions( 'admin_footer' );
+//     }
+// }, 0 );
+
+// Short-circuit admin page early and print a full custom HTML document.
+// add_action( 'current_screen', 'supports_serve_clean_admin_page' );
+function supports_serve_clean_admin_page( $screen ) {
+    if ( 'toplevel_page_supports' !== $screen->id ) {
+        return;
+    }
+
+    if ( ! current_user_can( 'manage_options' ) ) {
+        wp_die( 'Forbidden', '', 403 );
+    }
+
+    while ( ob_get_level() ) {
+        ob_end_clean();
+    }
+
+    // Send headers
+    // header( 'Content-Type: text/html; charset=utf-8' );
+
+    // Output your full custom HTML page
+    ?>
+    <!doctype html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>GutenKit — Clean Page</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <style>
+            html,body{height:100%;margin:0;font-family:system-ui,Segoe UI,Roboto,sans-serif}
+            .wrap{display:flex;align-items:center;justify-content:center;height:100%}
+        </style>
+    </head>
+    <body>
+        <div class="wrap">
+            <div>
+                <h1>GutenKit — custom admin page</h1>
+                <p>No wpwrap, no admin bar, no WP admin CSS.</p>
+            </div>
+        </div>
+    </body>
+    </html>
+    <?php
+    exit;
+}
