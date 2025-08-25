@@ -30,6 +30,11 @@ registerBlockType( metadata.name, {
 	/**
 	 * @see ./edit.js
 	 */
+	attributes: {
+        recordId: {
+            type: 'number',
+        },
+    },
 	edit: Edit,
 
 	/**

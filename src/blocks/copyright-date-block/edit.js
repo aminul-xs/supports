@@ -16,8 +16,7 @@ import { __ } from '@wordpress/i18n';
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#inspectorcontrols
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
-
+import { InspectorControls, useBlockProps, __experimentalBorderRadiusControl as BorderRadius } from '@wordpress/block-editor';
 /**
  * Imports the necessary components that will be used to create
  * the user interface for the block's settings.
@@ -26,7 +25,7 @@ import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
  * @see https://developer.wordpress.org/block-editor/reference-guides/components/text-control/
  * @see https://developer.wordpress.org/block-editor/reference-guides/components/toggle-control/
  */
-import { PanelBody, TextControl, ToggleControl } from '@wordpress/components';
+import { PanelBody, TextControl, BoxControl, ToggleControl } from '@wordpress/components';
 
 /**
  * Imports the useEffect React Hook. This is used to set an attribute when the
@@ -49,7 +48,7 @@ import { useEffect } from 'react';
  * @return {Element} Element to render.
  */
 export default function Edit( { attributes, setAttributes } ) {
-	const { fallbackCurrentYear, showStartingYear, startingYear } = attributes;
+	const { fallbackCurrentYear, showStartingYear, startingYear, yearBorder } = attributes;
 
 	// Get the current year and make sure it's a string.
 	const currentYear = new Date().getFullYear().toString();
@@ -70,6 +69,7 @@ export default function Edit( { attributes, setAttributes } ) {
 	} else {
 		displayDate = currentYear;
 	}
+	console.log('yearBorder', yearBorder);
 
 	return (
 		<>
@@ -77,6 +77,28 @@ export default function Edit( { attributes, setAttributes } ) {
 				<PanelBody
 					title={ __( 'Settings', 'block-development-examples' ) }
 				>
+					{/* <BoxControl
+						__next40pxDefaultSize
+						allowReset
+						id="XYZ"
+						values={yearBorder}
+						inputProps={{min: 0, max: 100}}
+						label="Label"
+						onChange={(value) => setAttributes({yearBorder: value})}
+						units={[
+							{value: 'px', label: 'px'},
+							{value: 'em', label: 'em'},
+							{value: 'rem', label: 'rem'},
+						]}
+					/> */}
+					<BorderRadius
+						label={__('Border Radius', 'block-development-examples')}
+						values={yearBorder}
+						onChange={(value) => {
+							console.log('BorderRadius onChange:', value);
+							setAttributes({ yearBorder: value });
+						}}
+					/>
 					<ToggleControl
 						checked={ showStartingYear }
 						label={ __(

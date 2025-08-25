@@ -17,6 +17,16 @@
 		},
 		"startingYear": {
 			"type": "string"
+		},
+		"yearBorder" : {
+			"type": "object",
+			 "default": {
+				"flat": "",
+			    "topLeft": "0px",
+				"topRight": "0px", 
+				"bottomLeft": "0px",
+				"bottomRight": "0px"
+			}
 		}
 	},
 	"supports": {

@@ -1,5 +1,3 @@
-import addControl from "./addControl";
-
-export {
-    addControl
-};
+import addControl from './addControl';
+import './store'
+export { addControl };
