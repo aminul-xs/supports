@@ -4,20 +4,14 @@
 
 import {InspectorControls, useBlockProps, RichText } from '@wordpress/block-editor';
 import { addControl } from '../../controls';
-import { BorderControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { PanelBody, TextControl, ToggleControl } from '@wordpress/components';
-import metadata from './block.json';
 import { createElement } from '@wordpress/element';
 import { select } from '@wordpress/data';
-const Edit = ( props ) => {
-    const {   attributes: { content, border }, setAttributes,  } = props;
-	const { ControlsManager } = window;
-	const allowed = select( 'supports/controls-store' ).getAllowedBlocks();
-	const controls = select( 'supports/controls-store' ).getBlockControls( metadata.name );
 
-	console.log( 'Allowed:', allowed );
-	console.log( 'Controls:', controls );
+const Edit = ({ attributes , setAttributes, name}) => {
+	const { ControlsManager } = window;
+	const { content, border } = attributes;
 
     const blockProps = useBlockProps();
     const onChangeContent = ( newContent ) => {
@@ -25,10 +19,10 @@ const Edit = ( props ) => {
     };
 
     const onChangeBorder = ( newBorder ) => {
-        setAttributes( { border: newBorder } );
+        setAttributes( { gkitBorder: newBorder } );
     };
 
-    console.log('attributesX', props.attributes);
+    console.log('attributesX', attributes);
 
     const colors = [
         { name: 'Blue 20', color: '#72aee6' },
@@ -51,7 +45,7 @@ const Edit = ( props ) => {
 				PanelBody,
 				{ title: __( 'Settings', 'block-development-examples' ) },
 
-				addControl(metadata.name, "gkitBorder", {
+				addControl(name, "gkitBorder", {
 					__next40pxDefaultSize: 40,
 					colors,
 					label: "Border",
@@ -62,7 +56,7 @@ const Edit = ( props ) => {
 					default: {}
 				}),
 
-				addControl(metadata.name, "gkitBorder2", {
+				addControl(name, "gkitBorder2", {
 					__next40pxDefaultSize: 40,
 					colors,
 					label: "Border 2",

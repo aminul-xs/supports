@@ -1,3 +1,4 @@
 import addControl from './addControl';
-import './store'
+// import './store'
 export { addControl };
+import '../store-controls'

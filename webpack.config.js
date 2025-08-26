@@ -28,6 +28,11 @@ module.exports = {
 				'src/controls',
 				'index.js'
 			),
+			'store-controls/index': path.resolve(
+				process.cwd(),
+				'src/store-controls',
+				'index.js'
+			)
 		},
 		plugins: [
 			// Include WP's plugin config.

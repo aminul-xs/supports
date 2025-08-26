@@ -1,0 +1,1 @@
+export const STORE_NAME = 'supports/controls-store';

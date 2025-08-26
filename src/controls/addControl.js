@@ -1,6 +1,6 @@
 import { addFilter } from '@wordpress/hooks';
 import { dispatch } from '@wordpress/data';
-
+import { select } from '@wordpress/data';
 // function addControl(name, config) {
 // 	return {
 // 		name,
@@ -36,6 +36,44 @@ export default function addControl( blockName, id, config ) {
 	);
 }
 
+// function addDynamicAttributes( settings, name ) {
+//     // Check if this specific block has registered controls
+//     const controls = select( 'supports/controls-store' )?.getBlockControls( 'supports-test/supports-block' );
+// 	const allowed = select( 'supports/controls-store' )?.getAllowedBlocks();
+
+//     // Only add attributes if this block has controls registered
+//     if ( controls && Object.keys( controls ).length > 0 ) {
+//         const newAttributes = {};
+        
+//         Object.keys( controls ).forEach( controlId => {
+//             const control = controls[ controlId ];
+//             newAttributes[ controlId ] = {
+//                 type: control.type || 'object',
+//                 default: control.default || ( control.type === 'string' ? '' : {} ),
+//             };
+//         });
+
+//         console.log( `Adding attributes for block "${name}":`, newAttributes );
+
+//         return {
+//             ...settings,
+//             attributes: {
+//                 ...settings.attributes,
+//                 ...newAttributes,
+//             },
+//         };
+//     }
+
+//     // Return unchanged settings if no controls for this block
+//     return settings;
+// }
+
+// // Apply the filter - this will only affect blocks that have registered controls
+// addFilter(
+//     'blocks.registerBlockType',
+//     'supports/add-block-specific-attributes',
+//     addDynamicAttributes
+// );
 
 
 // function addListBlockName(settings, name) {
@@ -76,32 +114,8 @@ export default function addControl( blockName, id, config ) {
 //     addListBlockName
 // );
 
-// // Extend block attributes
-// function addCustomAttributes( settings, name ) {
-// 	// Only target specific block(s)
-// 	if ( name !== 'supports-test/supports-block' ) {
-// 		return settings;
-// 	}
-//     const controls = blockControls[name]
-//     console.log('Controls for', name, ':', controls);
+// Extend block attributes
 
-// 	// Add new attributes
-// 	settings.attributes = {
-// 		...settings.attributes,
-// 		gkitBorder: {
-// 			type: 'object',
-// 			default: {},
-// 		},
-// 	};
-
-// 	return settings;
-// }
-
-// addFilter(
-// 	'blocks.registerBlockType',
-// 	'supports/block/specific-block',
-// 	addCustomAttributes
-// );
 
 // //Save Render the Attribute
 // import { addFilter } from '@wordpress/hooks';

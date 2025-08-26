@@ -25,5 +25,13 @@ function supports_editor_assets() {
         $asset_controls['dependencies'],
         $asset_controls['version']
     );
+
+    // $asset_store_controls = include_once PLUGIN_DIR . 'build/store-controls/index.asset.php';
+    // wp_enqueue_script(
+    //     'supports-store-controls-script',
+    //     plugin_dir_url( __DIR__ ) . 'build/store-controls/index.js',
+    //     $asset_store_controls['dependencies'],
+    //     $asset_store_controls['version']
+    // );
 }
 add_action( 'enqueue_block_editor_assets', 'supports_editor_assets' );
