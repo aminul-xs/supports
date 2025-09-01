@@ -20,7 +20,6 @@ import '../../store-controls'
 import Edit from './edit';
 import save from './save';
 import metadata from './block.json';
-import { useBlockAttributesWithControls } from '../../hooks';
 
 /**
  * Every block starts by registering a new block type definition.
@@ -28,24 +27,16 @@ import { useBlockAttributesWithControls } from '../../hooks';
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
 registerBlockType( metadata.name, {
+	// attributes : {
+	// 	border: {
+	// 		type: 'string',
+	// 		default: '1px solid black',
+	// 	}
+	// },
 	/**
 	 * @see ./edit.js
 	 */
-	edit: ( props ) => {
-		const controls = select( 'supports/controls-store' ).getBlockControls( props.name );
-		// 🔑 Don't mutate props.attributes (it's frozen)
-		const mergedAttributes = {
-			...metadata.attributes,
-			...controls,
-			...props.attributes,
-		};
-		console.log('props', props);
-		console.log('mergedAttributes', mergedAttributes);
-
-		// const mergedAttributes = useBlockAttributesWithControls( props.name, metadata.attributes, props.attributes );
-		// Pass merged attributes into Edit
-		return <Edit { ...props } attributes={ mergedAttributes } />;
-	},
+	edit: Edit,
 
 	/**
 	 * @see ./save.js

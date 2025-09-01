@@ -12,6 +12,7 @@ import { select } from '@wordpress/data';
 const Edit = ({ attributes , setAttributes, name}) => {
 	const { ControlsManager } = window;
 	const { content, border } = attributes;
+	console.log('Editing block:', ControlsManager);
 
     const blockProps = useBlockProps();
     const onChangeContent = ( newContent ) => {
@@ -22,7 +23,7 @@ const Edit = ({ attributes , setAttributes, name}) => {
         setAttributes( { gkitBorder: newBorder } );
     };
 
-    console.log('attributesX', attributes);
+    // console.log('attributesX', attributes);
 
     const colors = [
         { name: 'Blue 20', color: '#72aee6' },

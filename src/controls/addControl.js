@@ -15,7 +15,9 @@ import { select } from '@wordpress/data';
 
 
 export default function addControl( blockName, id, config ) {
-	const Component = config.control;
+	const Component = config?.control;
+	console.log( 'Adding control:', blockName, id, config );
+
 	// const newConfig = { ...config };
 	// delete newConfig.control;
 	// delete newConfig.default;
@@ -28,9 +30,9 @@ export default function addControl( blockName, id, config ) {
 	return (
 		<Component
 			key={ id }
-			label={ config.label }
-			value={ config.value }
-			onChange={ config.onChange }
+			label={ config?.label }
+			value={ config?.value }
+			onChange={ config?.onChange }
 			{ ...config }
 		/>
 	);
@@ -117,16 +119,21 @@ export default function addControl( blockName, id, config ) {
 // Extend block attributes
 
 
-// //Save Render the Attribute
-// import { addFilter } from '@wordpress/hooks';
+//Save Render the Attribute
 
 // function applyExtraProps( extraProps, blockType, attributes ) {
-// 	if ( blockType.name === 'core/paragraph' && attributes.gkitBorder?.style ) {
-// 		extraProps.style = {
-// 			...( extraProps.style || {} ),
-// 			border: attributes.gkitBorder.style,
-// 		};
+	
+// 	if ( blockType.name === 'supports-test/supports-block') {
+// 		console.log('attributes', attributes);
+		
+// 		// add gkitBorder block.json attribute
+// 		attributes.gkitBoxShadow = {
+// 			type: 'object',
+// 			default: {},
+// 		};	
 // 	}
+// 	console.log('Extra props for block:', blockType.name, extraProps);
+
 // 	return extraProps;
 // }
 

@@ -61,16 +61,16 @@ function create_block_supports_block_init() {
      *
      * @see https://developer.wordpress.org/reference/functions/register_block_type/
      */
-    // $manifest_data = require $manifest_path;
-    // foreach ( array_keys( $manifest_data ) as $block_type ) {
-    //     register_block_type( __DIR__ . "/build/blocks/{$block_type}" );
-    // }
+    $manifest_data = require $manifest_path;
+    foreach ( array_keys( $manifest_data ) as $block_type ) {
+        register_block_type( __DIR__ . "/build/blocks/{$block_type}" );
+    }
 
 	// Fallback: Register each block manually
-    // $manifest_data = require $manifest_path;
-    // foreach ( array_keys( $manifest_data ) as $block_type ) {
-    //     register_block_type_from_metadata( $blocks_path . '/' . $block_type );
-    // }
+    $manifest_data = require $manifest_path;
+    foreach ( array_keys( $manifest_data ) as $block_type ) {
+        register_block_type_from_metadata( $blocks_path . '/' . $block_type );
+    }
 }
 add_action( 'init', 'create_block_supports_block_init' );
 
