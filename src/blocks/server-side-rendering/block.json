@@ -1,0 +1,19 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "supports/server-side-rendering",
+	"version": "0.1.0",
+	"title": "Server Side Render Block",
+	"category": "widgets",
+	"example": {},
+	"textdomain": "supports",
+	"attributes": {
+		"label": {
+			"type": "string"
+		}
+	},
+	"editorScript": "file:./index.js",
+	"keywords": [
+		"server-side-render"
+	]
+}
